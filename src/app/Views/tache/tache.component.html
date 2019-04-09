@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary" (click)="Filtrer()" >Annee</button>
+            <button type="button" class="btn btn-primary" (click)="Filtrer()" >Mois</button>
+            <button type="button" class="btn btn-primary" (click)="Filtrer()" >Jour</button>
+            <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date de Debut</th>
+                <th scope="col">Date de Fin</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let t of ListTache">
+                <td>{{t.titre }}</td>
+                <td>{{t.description}}</td>
+                <td>{{t.dateDebut | date: ' dd/MM/yyyy hh :mm :ss'}}</td>
+                <td>{{t.dateFin | date: ' dd/MM/yyyy hh :mm :ss'}}</td>
+                <td><button mat-button color="primary" (click)="ModifierTache1(t.id)"  >Modifier</button></td>
+                <td><button mat-button color="primary" (click)="SupprimerTache(t.id)">Supprimer</button></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="col-md-6">
+            <form id="TacheForm">
+                <div class="form-group">
+                    <label >Titre</label>
+                    <input type="text" class="form-control" id="titre"  aria-describedby="emailHelp" placeholder="Titre">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" class="form-control" id="description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <label>Date Début</label>
+                    <input type="text" class="form-control" id="dateDebut" placeholder="Date de début">
+                </div>
+                <div class="form-group">
+                    <label>Date fin</label>
+                    <input type="text" class="form-control" id="dateFin" placeholder="Date de fin">
+                </div>
+                <div class="text-center" *ngIf="isModifier == false"><button type="button" class="btn btn-primary" (click)="AjouterTache()" >Ajouter une tache</button></div>
+                <div class="text-center" *ngIf="isModifier == true"><button type="button" class="btn btn-primary" (click)="ModifierTache2()" >Modifier une tache</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
